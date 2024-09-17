@@ -98,36 +98,18 @@ class pr002 {
                 System.out.print(p + "\t" + q + "\t");
                 System.out.print((p&q)  + "\t" + (p|q) + "\t");
                 System.out.println((p^q) + "\t" + (!p));
-
-		
-	        //Дополнительное задание
+	       
+	
+	     	//пример неожиданного повышения типов данных
 		System.out.println("\n");
-                boolean p, q;
-                System.out.println("P\tQ\tAND\tOR\tXOR\tNOT");
+		byte b11;
+		int i11;
+		b11 = 10;
+		i11 = b11 * b11; //при операции перемножения типов байт получается повышение результата до типа int
 
-                p = 1; q = 1;
-
-                System.out.print(p + "\t" + q + "\t");
-                System.out.print((p&q) + "\t" + (p|q) + "\t");
-                System.out.println((p^q) + "\t" + (!p));
-
-                p = 1; q = 0;
-
-                System.out.print(p + "\t" + q + "\t");
-                System.out.print((p&q) + "\t" + (p|q) + "\t");
-                System.out.println((p^q) + "\t" + (!p));
-
-                p = 0; q = 1;
-
-                System.out.print(p + "\t" + q + "\t");
-                System.out.print((p&q) + "\t" + (p|q) + "\t");
-                System.out.println((p^q) + "\t" + (!p));
-
-                p = 0; q = 0;
-
-                System.out.print(p + "\t" + q + "\t");
-                System.out.print((p&q)  + "\t" + (p|q) + "\t");
-                System.out.println((p^q) + "\t" + (!p));
+		b11 = 10;
+		b11 = (byte)(b11*b11); //необходимо приведение типа int к типу byte
+		System.out.println("i11 and b11" + i11 + " " + b11);
 
 
 	}
