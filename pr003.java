@@ -122,12 +122,15 @@ class pr003 {
 		for (i7 = 0, j7 = 10; i7<j7; i7++, j7--) {
 			System.out.println("i7 and j7: " + i7 + " " + j7); 
 		}
-		
+		char ignore;
 		int i8;
-		System.out.println("Для остановки цикла нажмитеклавишу \"S\"");
-		for (i8 = 0; (char) System.in.read() != 'S'; i8++)
+		System.out.println("Для остановки цикла нажмите клавишу \"S\"");
+		for (i8 = 0; (char) System.in.read() != 'S'; i8++){
+			 do {
+                                ignore = (char) System.in.read();
+                        }while (ignore!='\n');
 			System.out.println("Итерация №"+i8);
-
+		}
 		
 		System.out.println("\n");
 		for (i8=0; i8<10;){
@@ -153,7 +156,40 @@ class pr003 {
 		for(i8=1; i8<=5; sum+=i8++);
 		System.out.println("Сумма чисел равна " + sum);
 
+		//цикл while
+		System.out.println("\n");
+		ch = 'a';
+		while (ch<='z') {
+			System.out.println(ch);
+			ch++;
+		}
+		System.out.println();
+
+		//Вычисление целых степеней числа 2
 		
+		int e;
+		int result;
+		for (int i9=0; i9<10;i9++){
+			result=1;
+			e=i9;
+			while(e>0){
+				result *=2;
+				e--;
+			}
+			System.out.println("2 в степени "+i9+" равно "+result);
+		}
+
+		//цикл do-while
+		System.out.println("\n");
+		do {
+			System.out.println("Нажмите клавишу, затем ENTER: ");
+			ch = (char) System.in.read();
+			do {
+				ignore = (char) System.in.read();
+			}while (ignore!='\n');			
+		} while (ch != 'q');
+		
+
 	}
 }
 
