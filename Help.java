@@ -1,7 +1,7 @@
 class Help {
-	public static void main(String args[]) throws java.io.IOEception {
+	public static void main(String args[]) throws java.io.IOException {
 		char choice;
-		System.out.println("Справка по операторам");
+		System.out.println("Справка по операторам: ");
 		System.out.println("1. if");
 		System.out.println("2. switch");
 		System.out.println("Выберите номер раздела: ");
