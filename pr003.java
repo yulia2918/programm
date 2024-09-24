@@ -144,9 +144,12 @@ class pr003 {
                         i8++;
 		}
 		//бесконечный цикл	
-		//System.out.println("\n");
-		//for(;;);
-		//
+		System.out.println("\n");
+		for(;;) {
+			ch = (char) System.in.read();
+			if (ch == 'q') break;
+		}
+	
 
 		System.out.println("\n");
 		
@@ -189,7 +192,32 @@ class pr003 {
 			}while (ignore!='\n');			
 		} while (ch != 'q');
 		
+		//оператор break
+		System.out.println("\n");
+		for (x1 = 100; x1>-100; x1-=5) {
+                        System.out.println(x1);
+			if (x1==50) break; //прекращаем выполнение цикла
 
+		}
+
+		 System.out.println("\n");
+
+		 //break с вложенными циклами
+		
+		 for (int i9=0; i9<3; i9++) {
+			 System.out.println("Счётчик внешнего цикла: " + i9);
+			 System.out.print("Счётчик внутреннего цикла: " );
+			 int t = 0;
+
+			 while (t<100) {
+				if (t==10) break;
+				System.out.print(t+ " ");
+				t++;
+			
+			 }
+			 System.out.println();
+		 }
+		 System.out.println("Циклы закончились");
 	}
 }
 
