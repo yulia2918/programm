@@ -129,6 +129,31 @@ class pr003 {
 			System.out.println("Итерация №"+i8);
 
 		
+		System.out.println("\n");
+		for (i8=0; i8<10;){
+			System.out.println("Итерация №"+i8);
+			i8++;
+		}
+
+		System.out.println("\n");
+		for(; i8<20;){
+			System.out.println("Итерация №"+i8);
+                        i8++;
+		}
+		//бесконечный цикл	
+		//System.out.println("\n");
+		//for(;;);
+		//
+
+		System.out.println("\n");
+		
+		int sum=0;
+		//вычисление суммы чисел от 1 до 5
+
+		for(i8=1; i8<=5; sum+=i8++);
+		System.out.println("Сумма чисел равна " + sum);
+
+		
 	}
 }
 
