@@ -180,7 +180,6 @@ class arrays {
 			System.out.print(sample1[i3] + " ");
 		System.out.println();
 
-
 	}
 }
 
