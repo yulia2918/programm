@@ -233,6 +233,134 @@ class arrays {
 		System.out.println("Сумма: " + sum);
                 if (found)
                         System.out.println("Значение найдено");
+
+		//работа со строками
+
+		System.out.println();
+		String str1 = new String("строка12");
+		String str2 = "строка  ";
+		String str3 = new String(str2);
+		String str4 = new String(str2);
+		//эксперименты со ссылочными переменными str2 and str3
+		str3 = str2;
+		System.out.println(str3 + " " + str2);
+
+		if (str3==str2)
+			System.out.println("Ссылки указывают на один и тот же объект");
+
+		str2 = "Новая строка 2, подстрока str2";
+
+		System.out.println(str3 + " " + str2);
+
+		if (str3==str2)
+                        System.out.println("Ссылки указывают на один и тот же объект");
+		else 
+			System.out.println("Ссылки указывают на разные объекты");
+
+		//методы выполняемые для строковых объектов
+		//сравнение строк
+
+		System.out.println();
+		if (str1.equals(str2))
+			System.out.println("Строки str1 and str2 равны");
+		else
+			System.out.println("Строки str1 and str2 не равны");
+		System.out.println();
+		if (str3.equals(str4))
+                        System.out.println("Строки str3 and str4 равны");
+                else
+                        System.out.println("Строки str3 and str4 не равны");
+		
+		//использование оператора сравнения для проверки равентсва ссылок str1 and str2
+		if(str1==str2)
+			System.out.println();
+		int result;
+		result = str1.compareTo(str3);
+		System.out.println("Результат сравнения строк: " + result);
+
+		//определние длины строки
+
+		System.out.println("Длина строки str1: " + str1.length());
+
+		//возврат символа в строке по номеру индекса
+
+		System.out.println("Первый символ в строке str1: " + str1.charAt(0) + "\n" + ((int)str1.charAt(1)));
+
+		char ch1;
+		for (int i3 = 0; i3<str1.length(); i3++)
+			System.out.println(str1.charAt(i3));
+		System.out.println();
+
+		//возврат индекса с которого начинается подстрока
+
+		System.out.println("Первое вхождение подстроки \"рок\" в str2: " + str2.indexOf("рок"));
+		System.out.println("Последнее вхождение подстроки \"рок\" в str2: " + str2.lastIndexOf("рок"));
+
+		//массивы строк
+
+		System.out.println();
+		String[] strs = {"Элементы","строкового","массива","дял","примера"};
+		System.out.println("Исходный массив: ");
+
+		for (String s : strs)
+			System.out.print(s + " ");
+		System.out.println("\n");
+		
+		strs[1] = "изменённого строкового";
+		strs[3] = "для ещё одного";
+
+		System.out.println("изменённый массив:");
+
+		for (String s : strs)
+			System.out.print(" " + s);
+		System.out.println("\n");
+
+		//использование подстрок
+		str2 = "";
+		for (String s : strs)
+			str2 += " " +  s;
+		System.out.println("Строка str2: " + str2);
+		String substr = str2.substring(10,25);
+		System.out.println("Строка str2: " + str2 + "\nПодстрока substr:  " + substr);
+
+		//оператор switch управляемый строками
+
+		String command = "disconnect";
+		switch(command) {
+			case "connect":
+				System.out.println("Подключение");
+				break;
+			case "cancel":
+				System.out.println("Отмена");
+			case "disconnect":
+                                System.out.println("Отклонение");
+				break;
+			default:
+                                System.out.println("Неверная команда");
+				break;
+		}
+
+		//текстовый блок
+		String str5 = """
+			просто текст
+			Neque porro quisquam est qui dolorem 
+			ipsum quia dolor sit amet, consectetur,
+			isci viiiii
+			"""
+			;
+		System.out.println("Текстовый блок str5: " + str5);
+
+		//аргументы командной строки
+
+		System.out.println(""" 
+				1
+				2
+				3
+				""");
+		System.out.println("Программе переданно " + args.length + " аргументов");
+		System.out.println("Список аргументов: ");
+		for (String s:args)
+			System.out.println(s);
 	}
 }
 
