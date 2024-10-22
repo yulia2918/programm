@@ -173,6 +173,7 @@ class arrays {
 		if(sample1.length >= sample3.length)
 			for (int i3=0; i3<sample3.length; i3++)
 				sample1[i3] = sample3[i3];
+
 		//Вывод содержимого sample1[] после копирования
 
 		System.out.println("Массив sample1[] после копирования: ");
@@ -180,6 +181,58 @@ class arrays {
 			System.out.print(sample1[i3] + " ");
 		System.out.println();
 
+		//Цикл 'for-each'
+
+		System.out.println();
+
+		int sum = 0;
+
+		for (int i3=0; i3<10; i3++)
+			sum += sample3[i3];
+		System.out.println(sum);
+
+		sum = 0;
+		for (int x: sample3) {
+			System.out.println("Очередное значение: " + x);
+			sum += x;
+		}
+		System.out.println(sum);
+
+		//for-each для двумерного массива
+
+		sum = 0;
+		int val = 22;
+		boolean found = false;
+		for (int [] x: riders) {
+			for (int y:x) {
+				if( y==val) {
+					found = true;
+					break;
+				}
+				System.out.println("Значение: " + y);
+				sum +=y;
+			}
+			System.out.println("Новая строка массива");
+		}
+		System.out.println("Сумма: " + sum);
+		if (found)
+			System.out.println("Значение найдено");
+
+		//Самостоятельный пример поиска значения в ондомерном массиве sample3
+
+		sum = 0;
+		val = -13;
+		found = false;
+		for (int x: sample3) {
+			if( x==val) {
+				found = true;
+                                break;
+			}
+			sum += x;
+		}
+		System.out.println("Сумма: " + sum);
+                if (found)
+                        System.out.println("Значение найдено");
 	}
 }
 
