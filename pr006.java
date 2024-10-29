@@ -119,5 +119,23 @@ class pr006 {
                         System.out.println();
                         v = v >> 1;
 		}
+
+		//операция знак вопроса (?)
+
+		System.out.println();
+
+		//выражение1 ? выражение2 : выражение3
+		//причер вычисления абсолютного значения val
+		val = -25;
+		int abv = val < 0 ? -val : val;
+
+		//пример исключения деления на ноль
+		int result;
+		for (int i = -5; i < 6; i++) {
+			result = i != 0 ? 100/i : 0;
+			if (i != 0)
+				System.out.println("100 / " + i + " равно " + result);
+		}
+		System.out.println();
 	}
 }
