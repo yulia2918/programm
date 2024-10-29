@@ -1,4 +1,4 @@
-//побитовые операции: & | >> >>> << ~
+//побитовые операции: & | ^ ~ >> >>> <<
 
 class pr006 {
 	public static void main(String[] args) {
@@ -16,10 +16,10 @@ class pr006 {
 		//отображение битового представления байта
 
 		System.out.println();
-		int t;
+		
 		byte val = 100;
 		val = (byte) 'b';
-		for (t=128; t>0; t=t/2) {
+		for (int t=128; t>0; t=t/2) {
 			if ((val&t) !=0) System.out.print("1 ");
 			else System.out.print("0 ");
 		}
@@ -63,5 +63,61 @@ class pr006 {
 		
 		System.out.println("Дешифрованное сообщение: " + demsg);
 
+		//операция побитового "НЕ"
+
+		System.out.println();
+
+		byte b = -34;
+
+		for (int t=128; t>0; t=t/2) {
+                        if ((b&t) !=0)
+				System.out.print("1 ");
+                        else
+				System.out.print("0 ");
+		}
+		System.out.println();
+
+		b = (byte) ~b;
+		System.out.println(b);
+
+		for (int t=128; t>0; t=t/2) {
+                        if ((b&t) !=0)
+                                System.out.print("1 ");
+                        else
+                                System.out.print("0 ");
+		}
+		System.out.println();
+
+		//операции сдвига
+
+		System.out.println();
+		
+		//сдвиг влево
+		
+		int v = 1;
+
+		for (int i = 0; i<8; i++) {
+			for (int t=128; t > 0; t=t/2) {
+				if (( v & t) != 0)
+					System.out.print("1 ");
+				else
+					System.out.print("0 ");
+			}
+			System.out.println();
+			v = v << 1;
+		}
+
+		//сдвиг вправо
+
+		for (int i = 0; i<8; i++) {
+                        for (int t=128; t > 0; t=t/2) {
+                                if (( v & t) != 0)
+                                        System.out.print("1 ");
+                                else
+                                        System.out.print("0 ");
+                        }
+                        System.out.println();
+                        v = v >> 1;
+		}
 	}
 }
