@@ -173,6 +173,46 @@ class Overload2 {
 		System.out.println("Внутри f(byte): " + x);
 	} 
 }
+//перегрузка конструктора
+class Overload3 {
+	int x1;
+
+	Overload3() {
+		System.out.println("Внутри Overload3()");
+		x1 = 0;
+	}
+
+	Overload3(int i5) {
+		System.out.println("Внутри Overload3(int)");
+		x1 = i5;
+	}
+
+	Overload3(double d2) {
+		System.out.println("Внутри Overload3(double)");
+		x1 = (int) d2;
+	}
+
+	Overload3(int i5, int j5) {
+		System.out.println("Внутри Overload3(int, int)");
+		x1 = i5*j5;
+	}
+}
+
+//создание нового объекта на основе другого объекта
+
+class Summation {
+	int sum_1;
+
+	Summation (int num) {
+		sum_1 = 0;
+		for (int i6 = 1; i6 <= num; i6++)
+			sum_1 += i6;
+	}
+
+	Summation(Summation ob9) {
+		sum_1 = ob9.sum_1;
+	}
+}
 
 class pr007 {
 	public static void main(String[] args) {
@@ -312,5 +352,31 @@ class pr007 {
 		ob8.f(b18);
 		ob8.f(s18);
 		ob8.f(f18);
+
+		//пример создания различный объектов с запуском различных конструкторов (перегрузка конструктора)
+
+		System.out.println();
+
+		Overload3 t1 = new Overload3();
+		Overload3 t2 = new Overload3(88);
+		Overload3 t3 = new Overload3(17.23);
+		Overload3 t4 = new Overload3(2, 4);
+
+		System.out.println();
+
+		System.out.println("t1.x:" + t1.x1);
+		System.out.println("t2.x:" + t2.x1);
+		System.out.println("t3.x:" + t3.x1);
+		System.out.println("t4.x:" + t4.x1);
+
+		//демонстрация перегрузки конструктора для создания объекта на основе другого объекта
+
+		System.out.println();
+
+		Summation s1 = new Summation(5);
+		Summation s2 = new Summation(s1);
+
+		System.out.println("s1.sum_1: " + s1.sum_1);
+		System.out.println("s2.sum_1: " + s2.sum_1);
 	}
 }
