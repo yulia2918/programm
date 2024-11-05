@@ -4,9 +4,39 @@ class queue {
 	private char[] q;
 	private int putloc, getloc; //указатели на элементы очереди
 	
+
+	//конструктор. создающий очередь на базе массива с размером size
+	
 	public queue (int size) {
 		q = new char[size];
 		putloc = getloc = 0;
+	}
+
+	//конструктор очереди на основе объекта queue
+	
+	queue(queue ob) {
+		
+		//установка указателей
+		putloc = ob.putloc;
+		getloc = ob.getloc;
+
+		//выделение места под массив
+		q = new char [ob.q.length];
+
+		//копирование элементов
+		for (int i = getloc; i < putloc; i++)
+			q[i] = ob.q[i];
+	}
+
+	//конструктор в очереди с начальными значениями
+	
+	queue (char[] a) {
+		putloc = 0;
+		getloc = 0;
+		q = new char[a.length];
+
+		for (int i = 0; i < a.length; i++)
+			put(a[i]);
 	}
 
 	//метод для помещения символа в очередь
@@ -34,7 +64,7 @@ class qdemo {
 	public static void main (String args[]) {
 		queue bigQ = new queue(100);
 		queue smQ = new queue(4);
-
+		
 		char ch;
 		int i;
 
@@ -68,5 +98,36 @@ class qdemo {
 		 }
 
 		 //bigQ.q[3] = 'E'; попытка изменения значения у закрытой переменной класса очередь
+
+		 queue q1 = new queue(10);
+		 char [] name = {'I', 'v', 'a', 'n'};
+
+		 queue q2 = new queue(name);
+		 
+		 for (int i2 = 0; i2 < 10; i2++)
+			 q1.put((char) ('A' + i2));
+		 
+		 queue q3 = new queue(q1);
+
+		 System.out.println("Содержимое q1: ");
+		 for (int i2 = 0; i2 < 10; i2++) {
+			 ch = q1.get();
+			 System.out.println(ch);
+		 }
+		 System.out.println("\n");
+
+		 System.out.println("Содержимое q2 (на базе массива): ");
+		 for (int i2 = 0; i2 < 4; i2++) {
+                         ch = q2.get();
+                         System.out.println(ch);
+                 }
+                 System.out.println("\n");
+
+		 System.out.println("Содержимое q3 (на базе очереди q1): ");
+		 for (int i2 = 0; i2 < 10; i2++) {
+                         ch = q3.get();
+                         System.out.println(ch);
+                 }
+                 System.out.println("\n");
 	}
 }
