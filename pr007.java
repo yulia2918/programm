@@ -135,6 +135,45 @@ class ErrInf {
 	}
 
 }
+
+//перегрузка методов
+
+class Overload {
+	void ovlDemo() {
+		System.out.println("Без параметров");
+	}
+
+	void ovlDemo(int a3) {
+		System.out.println("Один параметр типа int: " + a3);
+	}
+
+	int ovlDemo(int a3, int b3) {
+		System.out.println("Два параметра типа int: " + a3 + ", " + b3);
+		return a3 + b3;
+	}
+
+	double ovlDemo(double a3, double b3) {
+		System.out.println("Два параметра типа double: " + a3 + ", " + b3);
+		return a3 - b3;
+	}
+}
+
+//влияние преобразования типов на перегрузку методов
+
+class Overload2 {
+	void f(int x) {
+		System.out.println("Внутри f(int): " +  x);
+	}
+
+	void f(double x) {
+		System.out.println("Внутри f(double): " + x);
+	}
+
+	void f(byte x) {
+		System.out.println("Внутри f(byte): " + x);
+	} 
+}
+
 class pr007 {
 	public static void main(String[] args) {
 		mod ob = new mod();
@@ -237,8 +276,41 @@ class pr007 {
 		e = err2.getErrInf(20);
                 System.out.println(e.msg + ", уровень серьёзности: " + e.severity);
 
+		//демонстрация перегрузки методов (overload)
 
+		Overload ob7 = new Overload();
 
+		int resi;
+		double resd;
 
+		ob7.ovlDemo();
+		System.out.println();
+
+		ob7.ovlDemo(2);
+		System.out.println();
+
+		resi = ob7.ovlDemo(4, 6);
+                System.out.println("Результат вызова ob7.ovlDemo(4, 6): " + resi);
+		System.out.println();
+
+		resd = ob7.ovlDemo(5.1, 3.5);
+		System.out.println("Результат вызова ob7.ovlDemo(5,1, 3.5): " + resd);
+		System.out.println();
+
+		//перегрузка с автопреобразованием типов
+
+		Overload2 ob8 = new Overload2();
+
+		int i18 = 10;
+		double d18 = 10.1;
+		byte b18 = 99;
+		short s18 = 10;
+		float f18 = 11.5F;
+
+		ob8.f(i18);
+		ob8.f(d18);
+		ob8.f(b18);
+		ob8.f(s18);
+		ob8.f(f18);
 	}
 }
