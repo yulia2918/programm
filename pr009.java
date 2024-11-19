@@ -1,17 +1,36 @@
 //основы наследования
 
 class TwoDShape {
-	double width;
-	double  height;
+	private double width;
+	private double  height;
 	void showDim() {
 		System.out.println("Ширина и высота: " +  width + " и " + height);
 	}
+
+	double getWidth() {
+		return width;
+	}
+
+	double getHeight() {
+		return height;
+	}
+
+	void setWidth(double w) {
+		if (w > 200)
+			width = 200;
+		else width = w;
+	}
+	 void setHeight(double h) {
+                if (h > 290)
+                        height = 290;
+                else height = h;
+        }
 }
 
 class Triangle extends TwoDShape {
 	String style;
 	double area() {
-		return width*height/2;
+		return getWidth()*getHeight()/2;
 	}
 	void showStyle() {
 		System.out.println("Стиль: " + style);
@@ -22,11 +41,11 @@ class Rectangle extends TwoDShape {
 	String outline;
 
 	double area() {
-		return width*height;
+		return getWidth()*getHeight();
 	}
 
 	boolean isSquare() {
-		if (width == height) return true;
+		if (getWidth() == getHeight()) return true;
 		return false;
 	}
 
@@ -42,20 +61,20 @@ class pr009 {
 		Rectangle r1 = new Rectangle();
 		Rectangle r2 = new Rectangle();
 
-		t1.width = 4.0;
-		t1.height = 4.0;
+		t1.setWidth(4.0);
+		t1.setHeight(4.0);
 		t1.style = "закрашенный";
 
-		t2.width = 8.0;
-		t2.height = 12.0;
+		t2.setWidth(8.0);
+		t2.setHeight(12.0);
 		t2.style = "контурный";
 
-		r1.width = 4.0;
-		r1.height = 4.0;
+		r1.setWidth(4.0);
+		r1.setHeight(4.0);
 		r1.outline = "сплошная";
 
-		r2.width = 8.0;
-                r2.height = 12.0;
+		r2.setWidth(8.0);
+                r2.setHeight(12.0);
                 r2.outline = "пунктирная";
 
 		System.out.println("Информация об объекте t1: ");
