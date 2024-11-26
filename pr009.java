@@ -13,11 +13,18 @@ class TwoDShape {
 	TwoDShape(double w, double h) {
 		width = w;
 		height = h;
+		System.out.println("Внутри конструктора TwoDShape (double w, double h)");
 	}
 
 	//конструктр объекта с одинаковыми высотой и шириной
 	TwoDShape(double x) {
 		width = height = x;
+	}
+	
+	//конструктор объекта на базе существующего объекта
+	TwoDShape(TwoDShape ob) {
+		width = ob.width;
+		height = ob.height;
 	}
 	void showDim() {
 		System.out.println("Ширина и высота: " +  width + " и " + height);
@@ -51,12 +58,13 @@ class Triangle extends TwoDShape {
 		super();
 		style = "отсуствует";
 	}
-	//конструктор с тремы параметрамии
+	//конструктор с тремя параметрамии
 	Triangle(String s, double w, double h) {
 		//вызов конструктор супер класса
 		super(w, h);
 		style = s;
-		
+		System.out.println("Внутри конструктора TwoDShape (String s, double w, double h)");
+
 		/*setWidth(w);
 		setHeight(h);*/
 	}
@@ -66,6 +74,14 @@ class Triangle extends TwoDShape {
 		super(x);
 		style = "закрашенный";
 	}
+	
+	//конструктор на базе существующего треугольника
+	
+	Triangle(Triangle ob) {
+		super (ob);
+		style = ob.style;
+	}
+	
 
 	//конструктор с демонстрацией доступа к переменной супер класса
 	
@@ -78,6 +94,59 @@ class Triangle extends TwoDShape {
 	}
 	void showStyle() {
 		System.out.println("Стиль: " + style);
+	}
+}
+//демонстрация строгой типизации при присваивании ссылок на объект
+class X {
+	int a;
+	X(int i) {
+		a = i;
+	}
+
+	void show() {
+		System.out.println("Значение а: " + a);
+	}
+}
+
+class Y {
+	int a;
+	Y (int i) {
+		a = i;
+	}
+}
+
+class Z extends X {
+	int b;
+	Z(int i, int j) {
+		super(j);
+		b = i;
+	}
+
+	void show() {
+		System.out.println("Значение a и b: " + a + " " + b);
+	}
+}
+
+class ColorTriangle extends Triangle {
+	private String color;
+
+	ColorTriangle (String c, String s, double w, double h) {
+		super(s, w, h);
+		color = c;
+		System.out.println("Внутри конструктора ColorTriangle (String c, String s, double w, double h)");
+	}
+
+	ColorTriangle (ColorTriangle ob) {
+		super(ob);
+		color = ob.color;
+	}
+
+	String getColor() {
+		return color;
+	}
+
+	void showColor() {
+		System.out.println("Цвет: " + color);
 	}
 }
 
@@ -130,6 +199,12 @@ class pr009 {
 		Triangle t2 = new Triangle("контурный", 8.0, 12.0);
 		Triangle t3 = new Triangle(4.0);
 		Triangle t4 = new Triangle(5, 10);
+
+		ColorTriangle t5 = new ColorTriangle("синий", "контурный", 8.0, 12.0);
+		ColorTriangle t6 = new ColorTriangle("красный", "закрашенный", 2.0, 5.0);	
+		Triangle t7 = new Triangle(t2);
+		ColorTriangle t8 = new ColorTriangle(t5);
+
 		Rectangle r1 = new Rectangle("сплошная", 4.0, 4.0);
 		Rectangle r2 = new Rectangle(5.0);
 		System.out.println();
@@ -170,6 +245,25 @@ class pr009 {
 
                 System.out.println("Площадь: " + t3.area() + "\n");
 
+		System.out.println("\nИнформация об объекте t5: ");
+                t5.showStyle();
+                t5.showDim();
+		t5.showColor();
+		System.out.println();
+
+		System.out.println("\nИнформация об объекте t7: ");
+                t7.showStyle();
+                t7.showDim();
+                System.out.println("Площадь: " + t7.area() + "\n");
+                System.out.println();
+
+		System.out.println("\nИнформация об объекте t8: ");
+                t8.showStyle();
+                t8.showDim();
+		t8.showColor();
+                System.out.println("Площадь: " + t8.area() + "\n");
+                System.out.println();
+
 		System.out.println("\nИнформация об объекте r2: ");
                 r1.showOutline();
                 r1.showDim();
@@ -187,5 +281,27 @@ class pr009 {
                 else
                         System.out.println("Не является квадратом");
                 System.out.println("Площадь: " + r2.area());
+
+		//демонстрация строгого контроля типов
+
+		X x = new X(10);
+		X x2;
+		Y y = new Y(5);
+		Z z = new Z(5, 6);
+		x2 = x;
+		x2 = z; // допустимое присваивание ссылки на объект подкласса
+
+		x.show();
+		System.out.println("выполнение show() при ссылке на объект подкласса");	//демонстрация демонической диспетчеризации метода
+		
+		x2.show();
+		x2 = x;
+		System.out.println("выполнение show() при ссылке на объект super класса");
+		x2.show();
+
+		System.out.println("x2.a: " + x2.a);
+		//System.out.println("x2.b: " + x2.b);	переменная подкласса недоступна ссылочной переменной родительского класса
+		//x2 = y;     недопустимое присваивание ссылки на объект другого типа
+
 	}
 }
