@@ -1,6 +1,6 @@
 //основы наследования
 
-class TwoDShape {
+abstract class TwoDShape {
 	private double width;
 	private double  height;
 	private String name;
@@ -56,10 +56,7 @@ class TwoDShape {
                 else height = h;
         }
 
-	double area() {
-		System.out.println("Метод area() должен быть переопределён в подклассе");
-		return 0.0;
-	}
+	abstract double area();
 
 	String getName() {
 		return name;
@@ -174,6 +171,9 @@ class ColorTriangle extends Triangle {
 	void showColor() {
 		System.out.println("Цвет: " + color);
 	}
+	public String toString() {
+		return "описывает цветной треугольник, его стиль, вычисляет площадь";
+	}
 }
 
 class Rectangle extends TwoDShape {
@@ -229,8 +229,46 @@ class Rectangle extends TwoDShape {
 	}
 }
 
+class A {
+	final void meth() {
+		System.out.println("Финальная версия метода meth");
+	}
+}
+
+class B extends A {
+	/*void meth() {
+		System.out.println("Ошибочная попытка переопределения метода meth");
+	}*/
+}
+//использование final для определения констант
+class ErrorMsg {
+	//коды ошибок
+	static final int OUTERR = 0;
+	static final int INERR = 1;
+	static final int DISKERR = 2;
+	static final int INDERR = 3;
+	
+	static String[] msgs = {
+		"Ошибка вывода",
+		"Ошибка ввода",
+		"Диск переполнен",
+		"Индекс вышел за границы массива"
+	};
+	//возврат сообщения об ошибке
+	static String getErrormsg(int i) {
+		if(i >= 0 & i <= msgs.length)
+			return msgs[i];
+		else
+			return "Несуществующий код ошибки";
+	}
+}
 class pr009 {
 	public static void main(String[] args) {
+		System.out.println(ErrorMsg.getErrormsg(ErrorMsg.OUTERR));
+		System.out.println(ErrorMsg.getErrormsg(ErrorMsg.INERR));
+		System.out.println(ErrorMsg.getErrormsg(ErrorMsg.DISKERR));
+		System.out.println(ErrorMsg.getErrormsg(ErrorMsg.INDERR));
+		System.out.println(ErrorMsg.getErrormsg(5));
 		Triangle t1 = new Triangle();
 		Triangle t2 = new Triangle("контурный", 8.0, 12.0);
 		Triangle t3 = new Triangle(4.0);
@@ -346,16 +384,38 @@ class pr009 {
 		//демнострация вызова метода вычисления площади для переменной суперкласса
 
 		TwoDShape[] shapes = new TwoDShape[5];
+		
 		shapes[0] = new Triangle("контурный", 8.0, 12.0);
 		shapes[1] = new Rectangle(10.0);
 		shapes[2] = new Rectangle("сплошная", 10.0, 4.0);
 		shapes[3] = new Triangle(7.0);
-		shapes[4] = new TwoDShape(10.0, 20.0, "абстрактная");
+		//shapes[4] = new TwoDShape(10.0, 20.0, "абстрактная"); 
 
-		for (int i = 0; i<shapes.length; i++) {
+		for (int i = 0; i<(shapes.length-1); i++) {
 			System.out.println("Имя объекта: " + shapes[i].getName());
 			System.out.println("Площадь: " + shapes[i].area());
 			System.out.println();
 		}
+
+		Object obj;
+		obj = shapes[3];
+		
+		System.out.println("\nКласс объекта: " + obj.getClass() + "\nОписание: " + obj.toString());
+		System.out.println("obj и shapes[3] равны друг другу: " + shapes[3].equals(obj));
+		System.out.println("Хэш-код объекта: " + obj.hashCode());
+		
+		ColorTriangle t10 = new ColorTriangle("Строка 1", "Строка 2", 10, 10);
+		obj = t10;
+		
+		System.out.println("\nКласс объекта: " + obj.getClass() + "\nОписание: " + obj.toString());
+		System.out.println("obj и shapes[3] равны друг другу: " + shapes[3].equals(obj));
+                System.out.println("Хэш-код объекта: " + obj.hashCode());
+
+		Triangle t11 = new Triangle("конутрный", 8.0, 10.0);
+		Triangle t12 = new Triangle(t11);
+		
+		System.out.println("t12 и t11 равны друг другу: " + t11.equals(t12));
+                System.out.println("Хэш-код объекта: " + t11.hashCode());
+		System.out.println("Хэш-код объекта: " + t12.hashCode());
 	}
 }
