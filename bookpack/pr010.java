@@ -1,22 +1,25 @@
 package bookpack;
-class book {
+
+/*
+public class book {
 	private String title;
 	private String author;
 	private int pubDate;
 
-	book(String t, String a, int d) {
+	public book(String t, String a, int d) {
 		title = t;
 		author = a;
 		pubDate = d;
 	}
 
-	void Show() {
+	public void Show() {
 		System.out.println(title);
 		System.out.println(author);
 		System.out.println(pubDate);
 		System.out.println();
 	}
 }
+*/
 
 class pr010 {
 	public static void main(String[] args) {
